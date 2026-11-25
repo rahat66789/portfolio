@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Rahath Khan: social media content creator and videographer in London.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* Layout: hero pairs the name with the top video in a phone frame; then a row per platform of
+   9:16 covers; then how/where and contact. Signature: numbers and the name set like the
+   burned-in captions on Rahath's own videos (white, black outline, yellow keyword). */
+:root {
+  --bg: #eceef2;
+  --surface: #ffffff;
+  --ink: #101217;
+  --muted: #59606d;
+  --line: #d3d7df;
+  --cap-fill: #ffffff;
+  --cap-edge: #0b0b0c;
+  --cap-key: #ffd400;
+  --rec: #e0322b;
+  --caption: "Montserrat", "Arial Black", "Helvetica Neue", Arial, sans-serif;
+  --body: "Atkinson Hyperlegible", "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d0f13; --surface: #161920; --ink: #eceef2; --muted: #9aa1ad; --line: #262a33;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d0f13; --surface: #161920; --ink: #eceef2; --muted: #9aa1ad; --line: #262a33;
+  color-scheme: dark;
+}
+
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.55; }
+.wrap {
+  max-width: 1120px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 36px 64px;
+  display: grid; gap: 64px;
+}
+a { color: inherit; }
+a:focus-visible { outline: 3px solid var(--cap-key); outline-offset: 3px; border-radius: 6px; }
+p { margin: 0; }
+h1, h2, h3 { margin: 0; text-wrap: balance; }
+
+/* The caption treatment */
+.cap {
+  font-family: var(--caption); font-weight: 900; text-transform: uppercase;
+  color: var(--cap-fill);
+  -webkit-text-stroke: 0.12em var(--cap-edge);
+  paint-order: stroke fill;
+  letter-spacing: 0.01em; line-height: 0.95;
+}
+.cap .key { color: var(--cap-key); }
+.stat .cap, .meta .num .cap { -webkit-text-stroke-width: 0.09em; }
+
+.eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.rec::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--rec); }
+@media (prefers-reduced-motion: no-preference) { .rec::before { animation: blink 1.6s steps(2, start) infinite; } }
+@keyframes blink { to { opacity: 0.25; } }
+
+/* Hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: 48px; align-items: center; }
+.intro { display: grid; gap: 22px; min-width: 0; }
+h1.cap { font-size: clamp(3.4rem, 10vw, 6.6rem); }
+.lede { font-size: 1.2rem; max-width: 34ch; }
+.lede strong { font-weight: 700; }
+.stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 28px; padding-top: 22px; border-top: 2px solid var(--ink); }
+.stat { display: grid; gap: 6px; min-width: 0; }
+.stat .cap { font-size: clamp(2rem, 4.6vw, 2.8rem); }
+.stat p { color: var(--muted); font-size: 0.95rem; }
+
+.feature { display: grid; gap: 14px; justify-items: center; min-width: 0; }
+.phone {
+  position: relative; width: min(100%, 300px); aspect-ratio: 9 / 16;
+  border-radius: 34px; padding: 10px; background: #0b0b0c;
+  box-shadow: 0 24px 60px -24px rgba(16, 18, 23, 0.55);
+}
+.phone img { width: 100%; height: 100%; object-fit: cover; border-radius: 26px; display: block; }
+.phone .overlay { position: absolute; left: 10px; right: 10px; bottom: 10px; padding: 18px 16px 20px; border-radius: 0 0 26px 26px; background: linear-gradient(to top, rgba(0,0,0,0.72), rgba(0,0,0,0)); text-align: center; }
+.phone .overlay .cap { font-size: 2.6rem; }
+.phone .overlay small { display: block; margin-top: 6px; font: 700 0.78rem var(--body); letter-spacing: 0.12em; text-transform: uppercase; color: #ffffff; }
+.watch { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; background: var(--ink); color: var(--bg); text-decoration: none; font-weight: 700; font-size: 0.92rem; }
+.btn::before { content: ""; border-left: 8px solid currentColor; border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
+.feature .note { color: var(--muted); font-size: 0.88rem; text-align: center; max-width: 32ch; }
+
+/* Platform rows */
+.row { display: grid; gap: 18px; }
+.row-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 18px; }
+.row-head h2 { font-family: var(--caption); font-weight: 900; font-size: clamp(1.4rem, 3vw, 1.9rem); text-transform: uppercase; letter-spacing: 0.01em; }
+.row-head p { color: var(--muted); font-size: 0.88rem; }
+.grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.card { display: grid; gap: 10px; text-decoration: none; min-width: 0; }
+.cover { position: relative; aspect-ratio: 9 / 16; max-width: 100%; border-radius: 16px; overflow: hidden; background: #0b0b0c; }
+.cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.meta .num { display: flex; align-items: baseline; gap: 8px; margin-bottom: 4px; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.meta .num .cap { font-size: clamp(1.5rem, 2.4vw, 1.9rem); letter-spacing: 0.01em; }
+@media (prefers-reduced-motion: no-preference) {
+  .cover img { transition: transform 300ms ease; }
+  .card:hover .cover img { transform: scale(1.04); }
+}
+.meta { display: grid; gap: 2px; }
+.meta strong { font-weight: 700; font-size: 0.98rem; line-height: 1.3; }
+.meta span { color: var(--muted); font-size: 0.85rem; }
+.meta .go { text-decoration: underline; text-underline-offset: 3px; color: var(--ink); font-size: 0.85rem; font-weight: 700; }
+
+/* How and where */
+.cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; }
+.cols.single { grid-template-columns: minmax(0, 720px); }
+.block { display: grid; gap: 16px; align-content: start; min-width: 0; }
+.block h2 { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.list { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+.list li { display: grid; gap: 3px; padding-top: 16px; border-top: 1px solid var(--line); }
+.list li:first-child { padding-top: 0; border-top: 0; }
+.list .k { font-weight: 700; }
+.list .when { color: var(--muted); font-size: 0.86rem; font-variant-numeric: tabular-nums; }
+.list p { color: var(--muted); }
+
+/* Contact */
+.contact { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 28px; padding: 24px; border-radius: 18px; background: var(--surface); border: 1px solid var(--line); }
+.contact .addr { font-family: var(--caption); font-weight: 800; font-size: clamp(1.15rem, 3.4vw, 1.6rem); user-select: all; overflow-wrap: anywhere; min-width: 0; }
+.contact .actions { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; font-size: 0.92rem; }
+.contact button { font: 700 0.92rem var(--body); color: var(--bg); background: var(--ink); border: 0; border-radius: 999px; padding: 10px 18px; cursor: pointer; }
+.contact button:focus-visible { outline: 3px solid var(--cap-key); outline-offset: 3px; }
+.contact a { text-underline-offset: 3px; }
+
+.print-only { display: none; }
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; gap: 36px; }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .cols { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: 1fr 1fr; gap: 16px; }
+}
+
+@media print {
+  :root:not(#_), :root[data-theme]:not(#_) {
+    --bg: #ffffff; --surface: #ffffff; --ink: #101217; --muted: #59606d; --line: #d3d7df;
+    color-scheme: light;
+  }
+  @page { size: A4; margin: 11mm; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { font-size: 12.5px; }
+  .wrap { max-width: none; padding-block: 0; gap: 20px; }
+  .rec::before { animation: none; }
+  .hero { grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr); gap: 28px; align-items: start; }
+  .intro { gap: 14px; }
+  h1.cap { font-size: 48px; }
+  .lede { font-size: 14px; }
+  .stats { gap: 12px 22px; padding-top: 14px; }
+  .stat .cap { font-size: 26px; }
+  .phone { width: 165px; border-radius: 24px; padding: 6px; box-shadow: none; }
+  .list { gap: 10px; }
+  .list li { padding-top: 10px; }
+  .contact { padding: 14px 18px; }
+  .phone img { border-radius: 20px; }
+  .phone .overlay { left: 7px; right: 7px; bottom: 7px; border-radius: 0 0 20px 20px; }
+  .phone .overlay .cap { font-size: 30px; }
+  .grid { grid-template-columns: repeat(4, minmax(0, 136px)); gap: 16px; }
+  .meta .num .cap { font-size: 19px; }
+  .cover img { transition: none; }
+  .row, .card, .list li, .contact, .stats, .feature { break-inside: avoid; }
+  .tiktok { break-before: page; }
+  #copy { display: none; }
+  .print-only { display: block; color: var(--muted); font-size: 0.85rem; }
+}
+
+button.play { all: unset; box-sizing: border-box; cursor: pointer; display: block; position: relative; }
+button.play:focus-visible { outline: 3px solid var(--cap-key); outline-offset: 3px; }
+.playicon { position: absolute; left: 50%; top: 50%; width: 58px; height: 58px; margin: -29px 0 0 -29px; border-radius: 50%; background: rgba(0,0,0,0.55); border: 2px solid #fff; display: grid; place-items: center; }
+.playicon::before { content: ""; margin-left: 5px; border-left: 17px solid #fff; border-top: 11px solid transparent; border-bottom: 11px solid transparent; }
+@media (prefers-reduced-motion: no-preference) { button.play .playicon { transition: transform 160ms ease; } button.play:hover .playicon { transform: scale(1.08); } }
+.links { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 4px; }
+.links a { font-size: 0.85rem; font-weight: 700; text-underline-offset: 3px; }
+dialog#player { border: 0; padding: 0; background: transparent; max-width: min(92vw, 420px); width: 100%; }
+dialog#player::backdrop { background: rgba(8, 9, 12, 0.82); }
+.player-box { display: grid; gap: 12px; }
+.grid.five { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+@media (max-width: 860px) { .grid.five { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .grid.five { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.player-box video { width: 100%; max-height: 78vh; aspect-ratio: 9 / 16; background: #000; border-radius: 16px; display: block; }
+.player-bar { display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between; align-items: center; }
+.player-bar .links a { color: #fff; }
+.player-bar button { font: 700 0.9rem var(--body); color: #101217; background: #fff; border: 0; border-radius: 999px; padding: 9px 16px; cursor: pointer; }
+</style>
+<title>Rahath Khan</title>
+</head>
+<body>
+
+<div class="wrap">
+  <section class="hero" aria-labelledby="name">
+    <div class="intro">
+      <span class="eyebrow rec">Social media content creator · London</span>
+      <h1 id="name" class="cap">Rahath <span class="key">Khan</span></h1>
+      <p class="lede">Social media content creator and videographer. Since July 2026 I've made most of the content for my client <strong>OSU Bio Food</strong>, a London street-food brand, and I've made video for small businesses as <strong>r4films</strong> since 2022.</p>
+      <div class="stats">
+        <div class="stat"><span class="cap">4M<span class="key">+</span></span><p>views on Instagram and TikTok, 8 Jul to 24 Nov 2026</p></div>
+        <div class="stat"><span class="cap">800</span><p>uploads: 540 Instagram Reels and 260 TikToks</p></div>
+        <div class="stat"><span class="cap"><span class="key">+</span>94%</span><p>Instagram new follows on the previous period (11.1K)</p></div>
+        <div class="stat"><span class="cap">3,052</span><p>new Instagram followers from one video</p></div>
+      </div>
+    </div>
+
+    <div class="feature">
+      <button class="phone play" type="button" data-video="v1005.mp4" data-ig="https://www.instagram.com/reel/DeGvgFPCyKd/" data-tt="https://www.tiktok.com/@osubiofoods/video/7693094367849909526" aria-label="Play the 5 October video">
+        <img src="ig-1005.jpg" alt="Cover of the 5 October video: tapping a fresh coconut at the stall, with the caption 'to using tap'.">
+        <div class="overlay"><span class="cap">431<span class="key">K</span></span><small>views · 5 Oct 2026</small></div>
+        <span class="playicon" aria-hidden="true"></span>
+      </button>
+      <div class="watch">
+        <a class="btn" href="https://www.instagram.com/reel/DeGvgFPCyKd/" target="_blank" rel="noopener">Watch on Instagram · 197,938</a>
+        <a class="btn" href="https://www.tiktok.com/@osubiofoods/video/7693094367849909526" target="_blank" rel="noopener">Watch on TikTok · 233.1K</a>
+      </div>
+      <p class="note">The top video of the period. It brought in 3,052 new Instagram followers.</p>
+    </div>
+  </section>
+
+  <section class="row" aria-labelledby="top">
+    <div class="row-head">
+      <h2 id="top">Top videos</h2>
+      <p>Tap a video to play it here</p>
+    </div>
+    <div class="grid five">
+      <div class="card">
+        <button class="cover play" type="button" data-video="v0828.mp4" data-tt="https://www.tiktok.com/@osubiofoods/video/7679187187782405408" aria-label="Play: Coconut at the stall"><img src="tt-0828.jpg" alt="Cover: holding a fresh coconut at the stall." loading="lazy"><span class="playicon" aria-hidden="true"></span></button>
+        <div class="meta"><span class="num"><span class="cap">81.3<span class="key">K</span></span>views</span><strong>Coconut at the stall</strong><span>TikTok</span><span>28 Aug 2026</span><span class="links"><a href="https://www.tiktok.com/@osubiofoods/video/7679187187782405408" target="_blank" rel="noopener">Watch on TikTok</a></span></div>
+      </div>
+      <div class="card">
+        <button class="cover play" type="button" data-video="v1107tt.mp4" data-ig="https://www.instagram.com/reel/DfdHleMxcp8/" data-tt="https://www.tiktok.com/@osubiofoods/video/7705542600018709793" aria-label="Play: The truth about store-bought coconuts"><img src="tt-1107.jpg" alt="Cover: the OSU stall, titled 'The truth about store-bought coconuts'." loading="lazy"><span class="playicon" aria-hidden="true"></span></button>
+        <div class="meta"><span class="num"><span class="cap">65.6<span class="key">K</span></span>views</span><strong>The truth about store-bought coconuts</strong><span>Instagram 31,488 · TikTok 34.1K</span><span>7 Nov 2026</span><span class="links"><a href="https://www.instagram.com/reel/DfdHleMxcp8/" target="_blank" rel="noopener">Watch on Instagram</a><a href="https://www.tiktok.com/@osubiofoods/video/7705542600018709793" target="_blank" rel="noopener">Watch on TikTok</a></span></div>
+      </div>
+      <div class="card">
+        <button class="cover play" type="button" data-video="v1114.mp4" data-ig="https://www.instagram.com/reel/Dfu599wxma1/" aria-label="Play: He walked past… then came back"><img src="ig-1114.jpg" alt="Cover: a passer-by in Shoreditch, titled 'He walked past… then came back'." loading="lazy"><span class="playicon" aria-hidden="true"></span></button>
+        <div class="meta"><span class="num"><span class="cap">28,373</span>views</span><strong>He walked past… then came back</strong><span>Instagram</span><span>14 Nov 2026</span><span class="links"><a href="https://www.instagram.com/reel/Dfu599wxma1/" target="_blank" rel="noopener">Watch on Instagram</a></span></div>
+      </div>
+      <div class="card">
+        <button class="cover play" type="button" data-video="v0829.mp4" data-tt="https://www.tiktok.com/@osubiofoods/video/7679550076821245217" aria-label="Play: Replying to a viewer's comment"><img src="tt-0829.jpg" alt="Cover: speaking to camera in reply to a viewer's comment." loading="lazy"><span class="playicon" aria-hidden="true"></span></button>
+        <div class="meta"><span class="num"><span class="cap">27.3<span class="key">K</span></span>views</span><strong>Replying to a viewer's comment</strong><span>TikTok</span><span>29 Aug 2026</span><span class="links"><a href="https://www.tiktok.com/@osubiofoods/video/7679550076821245217" target="_blank" rel="noopener">Watch on TikTok</a></span></div>
+      </div>
+      <div class="card">
+        <button class="cover play" type="button" data-video="v1024.mp4" data-ig="https://www.instagram.com/reel/De4eS8JCmLz/" aria-label="Play: Wild rice box"><img src="ig-1024.jpg" alt="Cover: a man in the rain by the stall, captioned 'wild rice box'." loading="lazy"><span class="playicon" aria-hidden="true"></span></button>
+        <div class="meta"><span class="num"><span class="cap">20,907</span>views</span><strong>Wild rice box</strong><span>Instagram</span><span>24 Oct 2026</span><span class="links"><a href="https://www.instagram.com/reel/De4eS8JCmLz/" target="_blank" rel="noopener">Watch on Instagram</a></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cols single">
+    <div class="block" aria-labelledby="where">
+      <h2 id="where">Where</h2>
+      <ul class="list">
+        <li><span class="k">Social Media &amp; Content Creator, OSU Bio Food (client)</span><span class="when">Jul 2026 to now</span><p>Most of the brand's short-form video, plus help with Shopify online orders.</p></li>
+        <li><span class="k">Freelance Videographer, r4films</span><span class="when">2022 to now</span><p>Occasional paid video work for small businesses, coaches and creators.</p></li>
+        <li><span class="k">Marketing and Sales Assistant, Properteers Group</span><span class="when">Nov 2023 to Jun 2024</span><p>Managed the social media inboxes and generated £2,000+ in course sales.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="contact">
+    <h2 id="contact">Contact</h2>
+    <div class="contact">
+      <span class="addr" id="email">rahathk@icloud.com</span>
+      <div class="actions">
+        <button type="button" id="copy">Copy email</button>
+        <a href="https://www.instagram.com/osubiofood/" target="_blank" rel="noopener">@osubiofood on Instagram</a>
+        <a href="https://www.tiktok.com/@osubiofoods" target="_blank" rel="noopener">@osubiofoods on TikTok</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<dialog id="player" aria-label="Video player">
+  <div class="player-box">
+    <video id="pv" controls playsinline preload="metadata"></video>
+    <div class="player-bar">
+      <span class="links" id="plinks"></span>
+      <button type="button" id="pclose">Close</button>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  const btn = document.getElementById('copy');
+  btn.addEventListener('click', () => {
+    const el = document.getElementById('email');
+    const text = el.textContent.trim();
+    const done = () => { btn.textContent = 'Copied'; setTimeout(() => { btn.textContent = 'Copy email'; }, 1600); };
+    const fallback = () => {
+      const r = document.createRange(); r.selectNodeContents(el);
+      const s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = 'Press Cmd+C';
+    };
+    try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
+  });
+
+  const dlg = document.getElementById('player'), pv = document.getElementById('pv'), pl = document.getElementById('plinks');
+  document.querySelectorAll('button.play').forEach(b => b.addEventListener('click', () => {
+    pv.src = b.dataset.video; pv.poster = b.querySelector('img')?.getAttribute('src') || '';
+    pl.innerHTML = '';
+    [['ig','Watch on Instagram'],['tt','Watch on TikTok']].forEach(([k,label]) => {
+      if (b.dataset[k]) { const a = document.createElement('a'); a.href = b.dataset[k]; a.target = '_blank'; a.rel = 'noopener'; a.textContent = label; pl.appendChild(a); }
+    });
+    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+    pv.play().catch(() => {});
+  }));
+  const shut = () => { pv.pause(); dlg.close ? dlg.close() : dlg.removeAttribute('open'); };
+  document.getElementById('pclose').addEventListener('click', shut);
+  dlg.addEventListener('click', e => { if (e.target === dlg) shut(); });
+  dlg.addEventListener('close', () => pv.pause());
+</script>
+</body>
+</html>
